@@ -9,7 +9,7 @@
         - _face = Clubs, Diamonds, Hearts, Spades
         - _suit = Ace, ...., 10, Jack, Queen, King, Joker
         - _special_attribute = T/F
-        - self._unique_ID = md5 ID.
+        - _unique_ID = md5 ID.
     
     - **Methods**
         - set_ID(id)

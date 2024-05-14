@@ -125,10 +125,10 @@ class Player:
     # cash mechanics
     #-------------------
 
-    def get_chips(self, amount: int):
+    def get_chips(self, amount: float):
         self._money += amount
 
-    def buys_in(self, amount: int, hand):
+    def buys_in(self, amount: float, hand):
         self._money -= amount
         hand._total_cash += amount
     
@@ -210,8 +210,8 @@ class Hand:
     def is_playing(self) -> bool:
         return not self._stop
     
-    def get_special_attribute(self, attribute: str):
-        return self._special_attributes[attribute]
+    # def get_special_attribute(self, attribute: str):
+    #     return self._special_attributes[attribute]
     
     def get_cards(self):
         return self._cards
