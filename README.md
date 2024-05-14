@@ -99,6 +99,88 @@
 
 ## Game Objects
 
-- Game
-- Round
-- Action
+- **Game**
+    - **Attributes**
+        - _name = str
+        - _nPlayers = int
+        - _players = list
+        - _deck_in_use = list
+        - _deck_used = list
+        - _hands = list
+        - _bank = float
+        - _rounds = list
+        - _roundcounter = int
+        - _unique_ID = md5 ID.
+        - _current_round = class Round
+        - _actions = list
+        - _check_func = callable
+        - _gameover = T/F
+        - _action_identifier = any
+    
+    - **Methods**
+        - set_ID(id)
+        - set_check_func(check_func: callable)
+        - set_action_identifier(identifier: any)
+        - game_starts()
+        - game_over()
+        - gameover()
+        - get_roundnumber()
+        - add_player(player: Player, hand: Hand)
+        - remove_player(player: Player, remove_hands: bool)
+        - import_deck(deck: list, valueDict: dict)
+        - empty_decks() --> THIS RETURNS the decks for storing.
+        - deal_card(hand: Hand)
+        - move_card(card: Card, fromHand, toHand)
+        - junk_card(card: Card, hand: Hand)
+        - junk_cards(hand: Hand)
+        - junk_all(toJunk: list)
+        - recycle_cards()
+        - move_money(amount: float, fromHand, toHand)
+        - empty_pots(extraHands: list)
+        - hands()
+        - check_options(hand: Hand)
+        - start_round()
+        - set_main(func: callable)
+        - main()
+        - action(hand: Hand, *args, **kwargs):
+        - play_game() ==> still working on this.
+
+
+- **Round**
+    - **Attributes**
+        - _game = class Game
+        - _unique_ID = md5 ID.
+        - _number = self._game.get_roundnumber()
+        - _hands = list
+        - _round_finished = T/F
+        - _actions = list
+    - **Methods**
+        - set_ID(id)
+        - get_number()
+        - record_action(action: any)
+        - set_hand(hand: Hand)
+        - ended()
+        - hands()
+- **Action** (constructed with a Hand, and a Round)
+    - **Attributes**
+        - PlayerRoundID = md5 ID.
+        - ActionType = any
+        - ActionSequence = hand._action_number
+        - player = hand.get_player()
+        - round = class Round
+        - hand = class Hand
+        - options = list
+        - results = any
+        - type_identifier = any
+
+    - **Methods**
+        - set_ID(id)
+        - get_ID(id)
+        - set_type_identifier(typeID: any)
+        - set_type()
+        - set_options(options)
+        - make_decision(*args, **kwargs)
+        - set_result(result)
+        - append_result(key, value)
+        - get_result()
+        

@@ -1,3 +1,6 @@
+from BaseObjects import *
+from IDgenerator import *
+
 class Game:
     def __init__(self, name = None, unique_ID = None):
         self._name = name
@@ -22,8 +25,8 @@ class Game:
     def set_ID(self, ID):
         self._unique_ID = ID
 
-    def set_recorder(self, recorder):
-        self.Recorder = recorder
+    # def set_recorder(self, recorder):
+    #     self.Recorder = recorder
 
     def set_check_func(self, check_func: callable):
         self._check_func = check_func
