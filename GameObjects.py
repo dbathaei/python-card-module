@@ -1,5 +1,6 @@
 from BaseObjects import *
 from IDgenerator import *
+from DeckGen import *
 
 class Game:
     def __init__(self, name = None, unique_ID = None):
@@ -180,14 +181,11 @@ class Game:
         hand.record_action(action)
     
     def play_game(self):
-        i = 0
         while True:
             self.start_round()
             self.main()
-            if self.gameover() or input("play again? (y/n): ") == "n":
-                self.recycle_cards()
+            if self.gameover():
                 break
-            i += 1
 
 
 class Round:

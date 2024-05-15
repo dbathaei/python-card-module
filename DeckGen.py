@@ -25,6 +25,4 @@ def DECK_GENERATOR(nDecks: int = 1, jokers: bool = False, aValueDict = None):
                     jsuit = "Black"
                 hash_id = GEN_HASH_CARD("Joker", jsuit, deck_number)
                 deck.append(Card("Joker", jsuit, aValueDict))
-    shuffle(deck)
     return deck
-
