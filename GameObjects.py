@@ -247,6 +247,13 @@ class Round:
         self._round_finished = True
     
 
+'''
+ I'm still figuring this one out. 
+ For now it is a blank canvas where you can record whatever you want.
+ Soon though, I have to find a way to standardize this, and the dev can
+ add their attributes and data to what gets recorded.
+'''
+
 class Action:
     def __init__(self, hand: Hand, round: Round):
         self.PlayerRoundID = ""
@@ -275,12 +282,7 @@ class Action:
         self.type_identifier = typeID
 
     def set_type(self):
-        if self.result is dict:
-            self.ActionType = self.result[self.type_identifier]
-        elif self.result is list:
-            self.ActionType = self.result[self.type_identifier]
-        else:
-            self.ActionType = self.result
+        self.ActionType = self.result[self.type_identifier]
 
     def set_options(self, options):
         self.options = options
