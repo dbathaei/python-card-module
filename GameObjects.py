@@ -3,6 +3,8 @@ from IDgenerator import *
 from DeckGen import *
 
 class Game:
+
+    # Attributes:
     def __init__(self, name = None, unique_ID = None):
         self._name = name
         self._nPlayers = 0
@@ -23,12 +25,15 @@ class Game:
     #-------------------
     # setters
     #-------------------
+
+    # sets the unique ID of the game
     def set_ID(self, ID):
         self._unique_ID = ID
 
     # def set_recorder(self, recorder):
     #     self.Recorder = recorder
 
+    # sets the status check function.
     def set_check_func(self, check_func: callable):
         self._check_func = check_func
     
@@ -189,6 +194,8 @@ class Game:
 
 
 class Round:
+
+    # Attributes:
     def __init__(self, game):
         self._game = game
         self._unique_ID = ""
@@ -208,23 +215,37 @@ class Round:
     def __repr__(self) -> str:
         return f"round {self._number}"
 
+    #-------------------
+    # setters
+    #-------------------
+
+    # sets the unique ID of the round
     def set_ID(self, ID):
         self._unique_ID = ID
-    
-    def get_number(self):
-        return self._number
-    
-    def record_action(self, action):
-        self._actions.append(action)
     
     def set_hand(self, hand):
         self._hands.append(hand)
 
+    #-------------------
+    # getters
+    #-------------------
+
+    def hands(self) -> list:
+        return self._hands
+    
+    def get_number(self):
+        return self._number
+    
+    #-------------------
+    # round recording utils
+    #-------------------
+
+    def record_action(self, action):
+        self._actions.append(action)
+
     def ended(self):
         self._round_finished = True
     
-    def hands(self) -> list:
-        return self._hands
 
 class Action:
     def __init__(self, hand: Hand, round: Round):
