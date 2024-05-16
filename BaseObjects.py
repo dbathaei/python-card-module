@@ -270,18 +270,23 @@ class Hand:
     # status
     #-------------------
 
+    # sets `_extra` to True
     def is_extra(self):
         self._extra = True
     
+    # sets `_stop` to True
     def stops(self):
         self._stop = True
 
+    # sets `_stop` to False
     def starts(self):
         self._stop = False
 
+    # sets `_won` to True
     def wins(self):
         self._won = True
-    
+
+    # sets `_lost` to True 
     def loses(self):
         self._lost = True
 
@@ -290,11 +295,13 @@ class Hand:
     # card mechanics
     #-------------------
 
+    # adds card to hand and updates the value of the hand.
     def add_card(self, card: Card):
         self._cards.append(card)
         self._values.append(card.value())
         self.sum_values()
     
+    # removes card from hand and updates the value of the hand.
     def remove_card(self, card: Card):
         cIndex = self._cards.index(card)
         self._cards.remove(card)
@@ -305,26 +312,36 @@ class Hand:
     # cash mechanics
     #-------------------
 
+    #tells the player to buy
     def load_cash(self, amount: float):
-        if self._player.money() >= amount:
-            self._player.buys_in(amount, self)
+        if self._player:
+            if self._player.money() >= amount:
+                self._player.buys_in(amount, self)
+                return
+            return f"{self._player} has insufficient funds."
+        return "Player not defined."
     
+    # gives all chips back to player
     def cash_out(self):
         self._player.cashes_out(self._total_cash)
     
+    # bets money
     def bets(self, amount: float):
         if self.can_pay_bet(amount):
             self._total_cash -= amount
             self._pot += amount
         else:
             return f"{self._player} has insufficient funds."
-    
+
+    # wins money
     def gains(self, amount: float):
         self._pot += amount
     
+    # loses money
     def pays(self, amount: float):
         self._pot -= amount
     
+    # moves money from `_pot` to `_total_cash`.
     def takes_pot(self):
         self._total_cash += self._pot
         self._pot = 0
@@ -333,12 +350,14 @@ class Hand:
     # maint, methods, calcs
     #-------------------
 
+    # sums the values of the cards in the hand.
     def sum_values(self):
         running_total = 0
         for value in self._values:
             running_total += value
         self._value = running_total
     
+    # checks if the player can pay the bet.
     def can_pay_bet(self, amount: float):
         if self._total_cash < amount:
             return False
@@ -349,12 +368,14 @@ class Hand:
     # round mechanics
     #-------------------
 
+    # starts a round for `self`
     def start_round(self, round):
         round_name = f"round_{round.get_number()}"
         self._rounds.update({round_name: []})
         self._current_round = round
         round.set_hand(self)
-        
+    
+    # records actions for the current round and hand.
     def record_action(self, action):
         print(f"Recording action: {action}")
         self._action_number += 1
