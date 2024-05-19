@@ -30,3 +30,9 @@ def GEN_HASH_PLAYERROUND(player, round_number):
     unique_identifier = f"{player._unique_ID}-{round_number}"
     hash_object = hashlib.md5(unique_identifier.encode())
     return hash_object.hexdigest()
+
+
+def GEN_HASH_GAME(game, date_time, game_number):
+    unique_identifier = f"{game}-{date_time}-{game_number}"
+    hash_object = hashlib.md5(unique_identifier.encode())
+    return hash_object.hexdigest()
