@@ -8,3 +8,5 @@ print(game._unique_ID)
 
 game.import_deck(DECK_GENERATOR())
 print(game._deck_in_use)
+
+print(game._deck_in_use[0]._unique_ID)
