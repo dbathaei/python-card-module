@@ -10,3 +10,6 @@ game.import_deck(DECK_GENERATOR())
 print(game._deck_in_use)
 
 print(game._deck_in_use[0]._unique_ID)
+
+print(game._roundcounter)
+game.start_round()
